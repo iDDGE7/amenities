@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import Layout from "components/Layout/Layout";
+import Container from "components/Container/Container";
+import SideBar from "components/SideBar/SideBar";
+import BodySection from "components/BodySection/BodySection";
+import useAmenities from "hooks/useAmenities.js";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const {
+        amenitiesParents,
+        amenitieChildsData,
+        availabePagination,
+        currentAmenitieParent,
+        selectAmenitieParent,
+        changeDataPaginate,
+        Loading
+    } = useAmenities();
+
+    return (
+        <Layout className="App">
+            <Container>
+                <SideBar
+                    amenitiesParents={amenitiesParents}
+                    selectAmenitieParent={selectAmenitieParent}
+                    currentAmenitieParent={currentAmenitieParent}
+                />
+                <BodySection
+                    amenitieChildsData={amenitieChildsData}
+                    availabePagination={availabePagination}
+                    changeDataPaginate={changeDataPaginate}
+                    Loading={Loading}
+                />
+            </Container>
+        </Layout>
+    );
+};
 
 export default App;
